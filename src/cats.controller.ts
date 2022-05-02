@@ -1,11 +1,14 @@
 import { Controller, Get, Res, HttpStatus } from '@nestjs/common';
+import { CatsService } from './cats.service';
 import { Response } from 'express';
 
 @Controller('cats')
 export class CatsController {
+  constructor(private catsService: CatsService) {}
+
   @Get()
   findAll() {
-    return 'this is a cat';
+    return this.catsService.findAll();
   }
 
   @Get('test')
